@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LUXORA — The World's Finest Marketplace</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>LUXORA — Global Trade & Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ============ RESET & BASE ============ */
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -102,15 +102,14 @@
     padding: 120px 40px 60px;
     overflow: hidden;
     background:
-      radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.13) 0%, transparent 55%),
-      radial-gradient(ellipse at 80% 70%, rgba(212, 175, 55, 0.09) 0%, transparent 55%),
-      var(--black);
+      linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)),
+      url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
   }
   .hero::before {
     content: ''; position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
   }
@@ -119,7 +118,8 @@
     display: inline-flex; align-items: center; gap: 10px;
     padding: 10px 22px; border-radius: 50px;
     border: 1px solid var(--border);
-    background: rgba(212, 175, 55, 0.05);
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(10px);
     font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
     color: var(--gold-light);
     margin-bottom: 32px;
@@ -140,6 +140,7 @@
     font-size: clamp(48px, 8vw, 108px);
     font-weight: 600; line-height: 1; letter-spacing: -1px;
     animation: fadeUp 0.9s ease 0.25s both;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
   }
   .hero h1 .italic {
     font-style: italic; font-weight: 300;
@@ -148,8 +149,9 @@
   }
   .hero p {
     max-width: 640px; margin: 32px auto 0;
-    font-size: 17px; color: var(--text-muted); letter-spacing: 0.5px;
+    font-size: 17px; color: var(--cream); letter-spacing: 0.5px;
     animation: fadeUp 0.9s ease 0.4s both;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.8);
   }
   .hero-cta {
     margin-top: 46px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
@@ -157,34 +159,13 @@
   }
   .btn-outline {
     padding: 14px 32px; border-radius: 50px;
-    border: 1px solid var(--gold); background: transparent;
+    border: 1px solid var(--gold); background: rgba(10,10,10,0.5);
+    backdrop-filter: blur(5px);
     color: var(--gold); font-weight: 600; letter-spacing: 1.5px;
     font-size: 13px; text-transform: uppercase; cursor: pointer;
     transition: all 0.4s ease;
   }
   .btn-outline:hover { background: var(--gold); color: var(--black); transform: translateY(-3px); }
-
-  /* Search bar */
-  .hero-search {
-    margin: 60px auto 0; max-width: 720px;
-    display: flex; align-items: center;
-    background: rgba(20, 20, 20, 0.8);
-    border: 1px solid var(--border);
-    border-radius: 60px; padding: 8px;
-    backdrop-filter: blur(20px);
-    animation: fadeUp 0.9s ease 0.7s both;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .hero-search:focus-within {
-    border-color: var(--gold);
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
-  }
-  .hero-search input {
-    flex: 1; background: transparent; border: none; outline: none;
-    padding: 16px 24px; color: var(--cream); font-size: 15px;
-  }
-  .hero-search input::placeholder { color: var(--text-muted); }
-  .hero-search .btn-gold { padding: 14px 30px; }
 
   /* ============ STATS ============ */
   .stats {
@@ -372,27 +353,19 @@
   .cta-banner {
     margin: 0 60px; padding: 90px 60px; border-radius: 28px;
     background:
-      radial-gradient(ellipse at 30% 20%, rgba(212,175,55,0.25) 0%, transparent 60%),
-      radial-gradient(ellipse at 70% 80%, rgba(212,175,55,0.15) 0%, transparent 60%),
-      linear-gradient(135deg, #1a1508, #0a0a0a);
+      linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.9)),
+      url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop') center/cover;
     border: 1px solid var(--border);
     text-align: center; position: relative; overflow: hidden;
-  }
-  .cta-banner::before {
-    content: ''; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    mask-image: radial-gradient(ellipse at center, black, transparent 70%);
   }
   .cta-banner > * { position: relative; z-index: 2; }
   .cta-banner h2 {
     font-family: var(--font-serif); font-size: clamp(36px, 5vw, 62px);
     font-weight: 600; line-height: 1.1; margin-bottom: 20px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
   }
   .cta-banner h2 .italic { font-style: italic; color: var(--gold); font-weight: 300; }
-  .cta-banner p { color: var(--text-muted); max-width: 580px; margin: 0 auto 40px; }
+  .cta-banner p { color: var(--cream); max-width: 580px; margin: 0 auto 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 
   /* ============ TESTIMONIALS ============ */
   .testimonials-grid {
@@ -516,9 +489,6 @@
     }
     .stats { grid-template-columns: 1fr; }
     .stat { border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-search { flex-direction: column; border-radius: 20px; padding: 14px; }
-    .hero-search input { padding: 14px; width: 100%; }
-    .hero-search .btn-gold { width: 100%; }
     .newsletter-form { flex-direction: column; border-radius: 20px; padding: 14px; }
     .newsletter-form input { padding: 14px; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -530,10 +500,10 @@
 
 <!-- ============ NAVBAR ============ -->
 <nav class="navbar" id="navbar">
-  <a href="#" class="logo">LUXORA<span>MARKETPLACE</span></a>
+  <a href="#" class="logo">LUXORA<span>GLOBAL TRADE</span></a>
   <div class="nav-links">
-    <a href="#categories">Categories</a>
-    <a href="#products">Collections</a>
+    <a href="#categories">Logistics</a>
+    <a href="#products">Trade Routes</a>
     <a href="#why">Why LUXORA</a>
     <a href="#testimonials">Clients</a>
     <a href="#contact">Contact</a>
@@ -542,10 +512,7 @@
     <button class="icon-btn" aria-label="Search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
     </button>
-    <button class="icon-btn" aria-label="Cart">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6L5 3H2"/></svg>
-    </button>
-    <button class="btn-gold">Become a Member</button>
+    <button class="btn-gold">Get a Quote</button>
   </div>
 </nav>
 
@@ -554,52 +521,48 @@
   <div class="hero-content">
     <div class="hero-badge">
       <span class="dot"></span>
-      The World's Most Exclusive Marketplace
+      The World's Most Exclusive Trade Network
     </div>
-    <h1>Discover the<br><span class="italic">Extraordinary</span></h1>
-    <p>A curated global marketplace where luxury meets legacy. Sourced from master artisans, trusted by connoisseurs across 180 countries.</p>
+    <h1>Connecting Global<br><span class="italic">Markets</span></h1>
+    <p>Seamless import and export solutions. Premium maritime logistics, trusted by industry leaders across 180 countries and major global ports.</p>
     <div class="hero-cta">
-      <button class="btn-gold">Explore Collections</button>
-      <button class="btn-outline">Watch the Story</button>
-    </div>
-    <div class="hero-search">
-      <input type="text" placeholder="Search rare goods, artisans, brands…" />
-      <button class="btn-gold">Search</button>
+      <button class="btn-gold">Explore Services</button>
+      <a href="trade.html" class="btn-outline" style="display:inline-block;">View Trade Portal</a>
     </div>
   </div>
 </section>
 
 <!-- ============ STATS ============ -->
 <section class="stats">
-  <div class="stat reveal"><h3>180+</h3><p>Countries Served</p></div>
-  <div class="stat reveal"><h3>2.4M</h3><p>Premium Members</p></div>
-  <div class="stat reveal"><h3>98%</h3><p>Satisfaction Rate</p></div>
-  <div class="stat reveal"><h3>25K</h3><p>Elite Artisans</p></div>
+  <div class="stat reveal"><h3>150+</h3><p>Global Ports</p></div>
+  <div class="stat reveal"><h3>2.5M</h3><p>Containers Handled</p></div>
+  <div class="stat reveal"><h3>99%</h3><p>On-Time Delivery</p></div>
+  <div class="stat reveal"><h3>120+</h3><p>Trade Routes</p></div>
 </section>
 
 <!-- ============ CATEGORIES ============ -->
 <section class="section" id="categories">
   <div class="section-head reveal">
-    <span class="section-tag">Curated Collections</span>
-    <h2>Shop by <span class="italic">Category</span></h2>
-    <p>Each category is a universe of craftsmanship, hand-selected by our global curators.</p>
+    <span class="section-tag">Our Network</span>
+    <h2>Global <span class="italic">Logistics</span></h2>
+    <p>From the busiest ports to the most remote destinations, we handle your cargo with unparalleled precision.</p>
   </div>
   <div class="categories-grid">
-    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80')">
+    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1559297434-fae8a1916a79?q=80&w=800&auto=format&fit=crop')">
       <div class="arrow">→</div>
-      <div class="content"><span>120+ items</span><h3>Fine Watches</h3></div>
+      <div class="content"><span>Ocean Freight</span><h3>Container Ships</h3></div>
     </div>
-    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80')">
+    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1590343027553-1c34212f8d1b?q=80&w=800&auto=format&fit=crop')">
       <div class="arrow">→</div>
-      <div class="content"><span>340+ items</span><h3>Jewelry</h3></div>
+      <div class="content"><span>Port Operations</span><h3>Terminal Docks</h3></div>
     </div>
-    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80')">
+    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop')">
       <div class="arrow">→</div>
-      <div class="content"><span>210+ items</span><h3>Leather Goods</h3></div>
+      <div class="content"><span>Infrastructure</span><h3>Container Yards</h3></div>
     </div>
-    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&q=80')">
+    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop')">
       <div class="arrow">→</div>
-      <div class="content"><span>180+ items</span><h3>Fragrance</h3></div>
+      <div class="content"><span>Heavy Lifting</span><h3>Port Cranes</h3></div>
     </div>
   </div>
 </section>
@@ -607,59 +570,59 @@
 <!-- ============ PRODUCTS ============ -->
 <section class="section products-section" id="products">
   <div class="section-head reveal">
-    <span class="section-tag">Editor's Selection</span>
-    <h2>Featured <span class="italic">Masterpieces</span></h2>
-    <p>Hand-picked rarities and modern icons — only at LUXORA.</p>
+    <span class="section-tag">Featured Services</span>
+    <h2>Premium <span class="italic">Trade Routes</span></h2>
+    <p>Specialized freight forwarding and customs clearance for high-value cargo.</p>
   </div>
   <div class="products-grid">
     <div class="product-card reveal">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=800&q=80')">
-        <span class="tag">Rare</span>
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=800&auto=format&fit=crop')">
+        <span class="tag">Direct</span>
       </div>
       <div class="product-info">
-        <span class="product-cat">Swiss Heritage</span>
-        <h3>Chrono Royale Gold</h3>
+        <span class="product-cat">Trans-Pacific</span>
+        <h3>Asia to USA Express</h3>
         <div class="product-meta">
-          <span class="price">$12,450 <small>USD</small></span>
+          <span class="price">Priority <small>Freight</small></span>
           <span class="rating">★★★★★</span>
         </div>
       </div>
     </div>
     <div class="product-card reveal">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80')">
-        <span class="tag">New</span>
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=800&auto=format&fit=crop')">
+        <span class="tag">Popular</span>
       </div>
       <div class="product-info">
-        <span class="product-cat">Atelier Paris</span>
-        <h3>Diamond Éclat Ring</h3>
+        <span class="product-cat">Europe Network</span>
+        <h3>Rotterdam Hub Gateway</h3>
         <div class="product-meta">
-          <span class="price">$8,900 <small>USD</small></span>
+          <span class="price">Custom <small>Clearance</small></span>
           <span class="rating">★★★★★</span>
         </div>
       </div>
     </div>
     <div class="product-card reveal">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80')">
-        <span class="tag">Limited</span>
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1605745341112-85968b19335b?q=80&w=800&auto=format&fit=crop')">
+        <span class="tag">Premium</span>
       </div>
       <div class="product-info">
-        <span class="product-cat">Italian Leather</span>
-        <h3>Milano Executive Bag</h3>
+        <span class="product-cat">Middle East</span>
+        <h3>Jebel Ali Logistics</h3>
         <div class="product-meta">
-          <span class="price">$3,200 <small>USD</small></span>
-          <span class="rating">★★★★☆</span>
+          <span class="price">Full <small>Container</small></span>
+          <span class="rating">★★★★★</span>
         </div>
       </div>
     </div>
     <div class="product-card reveal">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=800&q=80')">
-        <span class="tag">Signature</span>
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop')">
+        <span class="tag">Global</span>
       </div>
       <div class="product-info">
-        <span class="product-cat">Maison Française</span>
-        <h3>Nuit d'Or Eau de Parfum</h3>
+        <span class="product-cat">Worldwide</span>
+        <h3>White-Glove Freight</h3>
         <div class="product-meta">
-          <span class="price">$890 <small>USD</small></span>
+          <span class="price">VIP <small>Handling</small></span>
           <span class="rating">★★★★★</span>
         </div>
       </div>
@@ -671,69 +634,69 @@
 <section class="section" id="why">
   <div class="section-head reveal">
     <span class="section-tag">The LUXORA Difference</span>
-    <h2>Why the World's <span class="italic">Elite</span> Trust Us</h2>
+    <h2>Why the World's <span class="italic">Elite</span> Trade With Us</h2>
   </div>
   <div class="why-grid">
     <div class="why-card reveal">
       <div class="why-icon">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 7h7l-5.7 4.4 2.2 7L12 16l-6 4.4 2.2-7L2.5 9h7z"/></svg>
       </div>
-      <h3>Certified Authenticity</h3>
-      <p>Every item comes with a blockchain-verified certificate of origin, ensuring undisputed provenance and timeless value.</p>
+      <h3>Certified Compliance</h3>
+      <p>100% compliant customs clearance and documentation, ensuring your cargo moves seamlessly across borders without delays.</p>
     </div>
     <div class="why-card reveal">
       <div class="why-icon">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg>
       </div>
-      <h3>Global White-Glove Delivery</h3>
-      <p>Private courier service with signature handling, insurance, and concierge tracking to 180+ countries worldwide.</p>
+      <h3>Global Fleet Access</h3>
+      <p>Access to premium container vessels and priority port berthing. We ensure your goods are always on the fastest route.</p>
     </div>
     <div class="why-card reveal">
       <div class="why-icon">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <h3>Private Buyer Protection</h3>
-      <p>Discreet transactions, encrypted payments, and a dedicated personal advisor for every verified member.</p>
+      <h3>Insured & Secured</h3>
+      <p>Full-risk insurance and real-time satellite tracking. Your high-value cargo is monitored 24/7 from origin to destination.</p>
     </div>
   </div>
 </section>
 
 <!-- ============ CTA ============ -->
 <section class="cta-banner reveal">
-  <h2>Become Part of the <span class="italic">Inner Circle</span></h2>
-  <p>Request an invitation to access private collections, exclusive auctions, and pre-release masterpieces.</p>
-  <button class="btn-gold" style="padding:16px 42px;">Request Invitation</button>
+  <h2>Become a Global <span class="italic">Trade Partner</span></h2>
+  <p>Request an invitation to access our private freight network, priority port slots, and dedicated logistics managers.</p>
+  <button class="btn-gold" style="padding:16px 42px;">Request Consultation</button>
 </section>
 
 <!-- ============ TESTIMONIALS ============ -->
 <section class="section" id="testimonials">
   <div class="section-head reveal">
     <span class="section-tag">Client Chronicles</span>
-    <h2>Voices of Our <span class="italic">Connoisseurs</span></h2>
+    <h2>Voices of Our <span class="italic">Partners</span></h2>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial reveal">
       <div class="stars">★★★★★</div>
-      <p>"LUXORA redefined luxury for me. The craftsmanship and the white-glove service are simply unmatched anywhere in the world."</p>
+      <p>"LUXORA has transformed our supply chain. Their white-glove handling of our high-value electronics is unmatched."</p>
       <div class="author">
         <div class="avatar">A</div>
-        <div class="author-info"><h4>Alexander Voss</h4><span>Collector · Monaco</span></div>
+        <div class="author-info"><h4>Alexander Voss</h4><span>CEO · Monaco</span></div>
       </div>
     </div>
     <div class="testimonial reveal">
       <div class="stars">★★★★★</div>
-      <p>"Every piece tells a story. I've sourced three watches here that would be impossible to find anywhere else on Earth."</p>
+      <p>"We import luxury goods from Europe to the Middle East. The customs clearance speed and zero damage rate are incredible."</p>
       <div class="author">
         <div class="avatar">S</div>
-        <div class="author-info"><h4>Sophia Laurent</h4><span>Art Dealer · Paris</span></div>
+        <div class="author-info"><h4>Sophia Laurent</h4><span>Importer · Paris</span></div>
       </div>
     </div>
     <div class="testimonial reveal">
       <div class="stars">★★★★★</div>
-      <p>"The invitation-only auctions feel like stepping into another era of elegance. Truly a marketplace of kings."</p>
+      <p>"When you deal with 20,000 containers a year, you need reliability. LUXORA's port network and tracking system is flawless."</p>
       <div class="author">
         <div class="avatar">R</div>
-        <div class="author-info"><h4>Rashid Al-Farsi</h4><span>Entrepreneur · Dubai</span></div>
+        <div class="author-info"><h4>Rashid Al-Farsi</h4><span>Logistics Director · Dubai</span></div>
       </div>
     </div>
   </div>
@@ -742,9 +705,9 @@
 <!-- ============ NEWSLETTER ============ -->
 <section class="newsletter">
   <div class="section-head reveal" style="margin-bottom:0;">
-    <span class="section-tag">Insider Access</span>
-    <h3>Join the Newsletter</h3>
-    <p>Private drops, artisan stories, and rare finds — delivered discreetly.</p>
+    <span class="section-tag">Trade Insights</span>
+    <h3>Join Our Network</h3>
+    <p>Get weekly updates on global freight rates, port congestion, and trade opportunities.</p>
     <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed ✓';">
       <input type="email" placeholder="your@email.com" required />
       <button type="submit" class="btn-gold">Subscribe</button>
@@ -757,7 +720,7 @@
   <div class="footer-top">
     <div class="footer-brand reveal">
       <a href="#" class="logo">LUXORA</a>
-      <p>The world's most exclusive marketplace — where extraordinary objects and their makers meet discerning collectors.</p>
+      <p>Global import and export specialists. Delivering your cargo with the elegance, speed, and security it deserves.</p>
       <div class="socials">
         <a href="#" aria-label="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
@@ -771,21 +734,21 @@
       </div>
     </div>
     <div class="footer-col reveal">
-      <h4>Marketplace</h4>
+      <h4>Services</h4>
       <ul>
-        <li><a href="#">Watches</a></li>
-        <li><a href="#">Jewelry</a></li>
-        <li><a href="#">Leather Goods</a></li>
-        <li><a href="#">Fragrance</a></li>
-        <li><a href="#">Private Auctions</a></li>
+        <li><a href="#">Ocean Freight</a></li>
+        <li><a href="#">Air Freight</a></li>
+        <li><a href="#">Customs Clearance</a></li>
+        <li><a href="#">Warehousing</a></li>
+        <li><a href="#">Cargo Insurance</a></li>
       </ul>
     </div>
     <div class="footer-col reveal">
       <h4>Company</h4>
       <ul>
         <li><a href="#">About LUXORA</a></li>
-        <li><a href="#">Our Artisans</a></li>
-        <li><a href="#">Concierge</a></li>
+        <li><a href="#">Our Network</a></li>
+        <li><a href="#">Trade Portal</a></li>
         <li><a href="#">Careers</a></li>
         <li><a href="#">Press</a></li>
       </ul>
@@ -794,16 +757,16 @@
       <h4>Support</h4>
       <ul>
         <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Shipping & Returns</a></li>
-        <li><a href="#">Authentication</a></li>
+        <li><a href="#">Tracking</a></li>
+        <li><a href="#">Documentation</a></li>
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Terms of Service</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 LUXORA Marketplace. All rights reserved.</span>
-    <span>Crafted with passion · Sourced with integrity</span>
+    <span>© 2025 LUXORA Global Trade. All rights reserved.</span>
+    <span>Moving the world's cargo with elegance.</span>
   </div>
 </footer>
 
