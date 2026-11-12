@@ -3,496 +3,455 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LUXORA — Global Trade & Logistics</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>ATLAS FLOW — Global Import & Export</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ============ RESET & BASE ============ */
+  /* ============ RESET & VARIABLES ============ */
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --gold: #d4af37;
-    --gold-light: #f4e4a6;
-    --gold-dark: #a8842c;
-    --black: #0a0a0a;
-    --charcoal: #141414;
-    --charcoal-2: #1c1c1c;
-    --cream: #f8f5ee;
-    --text-muted: #a8a8a8;
-    --border: rgba(212, 175, 55, 0.18);
+    --red: #d90429;
+    --red-dark: #a3021e;
+    --red-light: #fdeaec;
+    --white: #ffffff;
+    --off-white: #f9f9f9;
+    --text-dark: #1a1a1a;
+    --text-gray: #555555;
+    --text-light: #888888;
+    --border: #e5e5e5;
     --font-serif: 'Cormorant Garamond', serif;
     --font-sans: 'Inter', sans-serif;
   }
   html { scroll-behavior: smooth; }
   body {
     font-family: var(--font-sans);
-    background: var(--black);
-    color: var(--cream);
-    overflow-x: hidden;
+    background: var(--white);
+    color: var(--text-dark);
     line-height: 1.6;
+    overflow-x: hidden;
   }
   a { text-decoration: none; color: inherit; }
   img { display: block; max-width: 100%; }
-  ::selection { background: var(--gold); color: var(--black); }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: var(--charcoal); }
-  ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 10px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+  ::selection { background: var(--red); color: var(--white); }
 
   /* ============ NAVBAR ============ */
   .navbar {
     position: fixed; top: 0; left: 0; right: 0;
     z-index: 1000;
-    padding: 22px 60px;
+    padding: 20px 60px;
     display: flex; align-items: center; justify-content: space-between;
-    transition: all 0.4s ease;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
   }
   .navbar.scrolled {
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
     padding: 14px 60px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
   }
   .logo {
     font-family: var(--font-serif);
-    font-size: 30px; font-weight: 700;
-    letter-spacing: 4px;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 28px; font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-dark);
   }
-  .logo span { font-size: 14px; letter-spacing: 6px; display: block; margin-top: -6px; opacity: 0.7; }
-  .nav-links { display: flex; gap: 40px; align-items: center; }
+  .logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 35px; align-items: center; }
   .nav-links a {
-    font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--cream); position: relative; transition: color 0.3s;
+    font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-gray); position: relative; transition: color 0.3s;
+    font-weight: 500;
   }
   .nav-links a::after {
     content: ''; position: absolute; left: 0; bottom: -6px;
-    width: 0; height: 1px; background: var(--gold);
-    transition: width 0.4s ease;
+    width: 0; height: 2px; background: var(--red);
+    transition: width 0.3s ease;
   }
-  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover { color: var(--red); }
   .nav-links a:hover::after { width: 100%; }
-  .nav-actions { display: flex; gap: 20px; align-items: center; }
-  .icon-btn {
-    width: 44px; height: 44px; border-radius: 50%;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.3s; background: transparent; color: var(--cream);
+  .btn-red {
+    padding: 12px 28px; border-radius: 4px;
+    background: var(--red);
+    color: var(--white); font-weight: 600; letter-spacing: 1px;
+    font-size: 12px; text-transform: uppercase; border: none; cursor: pointer;
+    transition: all 0.3s ease;
   }
-  .icon-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-  .btn-gold {
-    padding: 14px 32px; border-radius: 50px;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
-    color: var(--black); font-weight: 600; letter-spacing: 1.5px;
-    font-size: 13px; text-transform: uppercase; border: none; cursor: pointer;
-    transition: all 0.4s ease; box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+  .btn-red:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3);
   }
-  .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(212, 175, 55, 0.45); }
 
   /* ============ HERO ============ */
   .hero {
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    text-align: center;
+    min-height: 85vh;
+    display: flex; align-items: center;
     position: relative;
-    padding: 120px 40px 60px;
-    overflow: hidden;
+    padding: 120px 60px 80px;
     background:
-      linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)),
+      linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.85)),
       url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
+    border-bottom: 1px solid var(--border);
   }
-  .hero::before {
-    content: ''; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
-  }
-  .hero-content { position: relative; z-index: 2; max-width: 1000px; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 10px 22px; border-radius: 50px;
-    border: 1px solid var(--border);
-    background: rgba(10, 10, 10, 0.6);
-    backdrop-filter: blur(10px);
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold-light);
-    margin-bottom: 32px;
-    animation: fadeUp 0.8s ease 0.1s both;
-  }
-  .hero-badge .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 12px var(--gold);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
+  .hero-content { max-width: 750px; position: relative; z-index: 2; }
+  .hero-tag {
+    display: inline-block; padding: 8px 16px;
+    background: var(--red-light);
+    color: var(--red);
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 25px;
+    border-radius: 4px;
   }
   .hero h1 {
     font-family: var(--font-serif);
-    font-size: clamp(48px, 8vw, 108px);
-    font-weight: 600; line-height: 1; letter-spacing: -1px;
-    animation: fadeUp 0.9s ease 0.25s both;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 600; line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 20px;
   }
-  .hero h1 .italic {
-    font-style: italic; font-weight: 300;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
+  .hero h1 .red { color: var(--red); }
   .hero p {
-    max-width: 640px; margin: 32px auto 0;
-    font-size: 17px; color: var(--cream); letter-spacing: 0.5px;
-    animation: fadeUp 0.9s ease 0.4s both;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+    font-size: 17px; color: var(--text-gray);
+    max-width: 580px; margin-bottom: 40px;
+    line-height: 1.8;
   }
-  .hero-cta {
-    margin-top: 46px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
-    animation: fadeUp 0.9s ease 0.55s both;
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-outline-red {
+    padding: 12px 28px; border-radius: 4px;
+    background: transparent;
+    border: 2px solid var(--red);
+    color: var(--red); font-weight: 600; letter-spacing: 1px;
+    font-size: 12px; text-transform: uppercase; cursor: pointer;
+    transition: all 0.3s ease;
   }
-  .btn-outline {
-    padding: 14px 32px; border-radius: 50px;
-    border: 1px solid var(--gold); background: rgba(10,10,10,0.5);
-    backdrop-filter: blur(5px);
-    color: var(--gold); font-weight: 600; letter-spacing: 1.5px;
-    font-size: 13px; text-transform: uppercase; cursor: pointer;
-    transition: all 0.4s ease;
+  .btn-outline-red:hover {
+    background: var(--red);
+    color: var(--white);
   }
-  .btn-outline:hover { background: var(--gold); color: var(--black); transform: translateY(-3px); }
 
-  /* ============ STATS ============ */
-  .stats {
+  /* ============ STATS BAR ============ */
+  .stats-bar {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--charcoal);
+    background: var(--red);
+    color: var(--white);
   }
-  .stat {
-    padding: 50px 30px; text-align: center;
-    border-right: 1px solid var(--border);
-    transition: background 0.4s;
+  .stat-item {
+    padding: 40px 30px; text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.2);
   }
-  .stat:last-child { border-right: none; }
-  .stat:hover { background: var(--charcoal-2); }
-  .stat h3 {
-    font-family: var(--font-serif); font-size: 52px; font-weight: 600;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    line-height: 1;
+  .stat-item:last-child { border-right: none; }
+  .stat-item h3 {
+    font-family: var(--font-serif);
+    font-size: 46px; font-weight: 700;
+    line-height: 1; margin-bottom: 8px;
   }
-  .stat p {
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--text-muted); margin-top: 12px;
+  .stat-item p {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    opacity: 0.9;
   }
 
-  /* ============ SECTION HEADING ============ */
-  .section { padding: 120px 60px; }
+  /* ============ SECTION TITLES ============ */
+  .section { padding: 100px 60px; }
   .section-head {
-    text-align: center; margin-bottom: 70px;
+    text-align: center; margin-bottom: 60px;
   }
-  .section-tag {
-    font-size: 12px; letter-spacing: 5px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 18px; display: block;
+  .section-head .tag {
+    display: inline-block;
+    color: var(--red);
+    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 15px;
   }
   .section-head h2 {
     font-family: var(--font-serif);
-    font-size: clamp(38px, 5vw, 64px);
-    font-weight: 600; line-height: 1.1;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 600; color: var(--text-dark);
+    line-height: 1.2;
   }
-  .section-head h2 .italic {
-    font-style: italic; font-weight: 300;
-    color: var(--gold);
-  }
+  .section-head h2 .red { color: var(--red); font-style: italic; }
   .section-head p {
-    color: var(--text-muted); margin-top: 18px; max-width: 560px;
-    margin-left: auto; margin-right: auto; font-size: 15px;
+    color: var(--text-gray); max-width: 600px;
+    margin: 18px auto 0; font-size: 15px;
   }
 
-  /* ============ CATEGORIES ============ */
-  .categories-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+  /* ============ 2x2 SERVICES GRID ============ */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
   }
-  .category-card {
-    position: relative; overflow: hidden; border-radius: 16px;
-    height: 340px; cursor: pointer;
+  .service-card {
+    background: var(--white);
     border: 1px solid var(--border);
-    background-size: cover; background-position: center;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    border-radius: 12px;
+    padding: 40px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
-  .category-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.9) 100%);
-    transition: opacity 0.4s;
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 4px; height: 0; background: var(--red);
+    transition: height 0.3s ease;
   }
-  .category-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(212,175,55,0.2); }
-  .category-card:hover::before { opacity: 0.7; }
-  .category-card .content {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 28px; z-index: 2;
+  .service-card:hover {
+    border-color: var(--red);
+    box-shadow: 0 10px 30px rgba(217, 4, 41, 0.08);
+    transform: translateY(-4px);
   }
-  .category-card .content h3 {
-    font-family: var(--font-serif); font-size: 26px; font-weight: 600;
-    transition: color 0.3s;
-  }
-  .category-card:hover .content h3 { color: var(--gold); }
-  .category-card .content span {
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold-light); opacity: 0.85;
-  }
-  .category-card .arrow {
-    position: absolute; top: 24px; right: 24px;
-    width: 44px; height: 44px; border-radius: 50%;
-    background: rgba(212,175,55,0.15); backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
+  .service-card:hover::before { height: 100%; }
+  .service-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--red-light);
     display: flex; align-items: center; justify-content: center;
-    color: var(--gold); opacity: 0; transform: scale(0.6);
-    transition: all 0.4s;
+    color: var(--red); margin-bottom: 22px;
   }
-  .category-card:hover .arrow { opacity: 1; transform: scale(1); }
+  .service-card h3 {
+    font-family: var(--font-serif);
+    font-size: 26px; font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .service-card p {
+    color: var(--text-gray); font-size: 14px; line-height: 1.7;
+  }
 
-  /* ============ PRODUCTS ============ */
-  .products-section { background: var(--charcoal); }
+  /* ============ 2x2 PRODUCTS GRID ============ */
+  .products-section { background: var(--off-white); }
   .products-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 26px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
   }
   .product-card {
-    background: var(--charcoal-2); border-radius: 18px;
-    overflow: hidden; border: 1px solid var(--border);
-    transition: all 0.4s ease;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
   }
   .product-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--gold);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
   }
   .product-img {
-    height: 260px; background-size: cover; background-position: center;
-    position: relative; overflow: hidden;
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
   }
   .product-img::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6) 100%);
-    transition: opacity 0.4s;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5) 100%);
   }
   .product-img .tag {
     position: absolute; top: 16px; left: 16px; z-index: 2;
-    padding: 6px 14px; border-radius: 50px;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold));
-    color: var(--black); font-size: 11px; font-weight: 700;
+    padding: 6px 14px; border-radius: 3px;
+    background: var(--red);
+    color: var(--white); font-size: 11px; font-weight: 600;
     letter-spacing: 1px; text-transform: uppercase;
   }
-  .product-info { padding: 22px; }
-  .product-cat {
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold); opacity: 0.9;
-  }
+  .product-info { padding: 24px; }
   .product-info h3 {
-    font-family: var(--font-serif); font-size: 22px; font-weight: 600;
-    margin: 8px 0 12px; transition: color 0.3s;
+    font-family: var(--font-serif);
+    font-size: 24px; font-weight: 600;
+    margin-bottom: 8px;
   }
-  .product-card:hover .product-info h3 { color: var(--gold-light); }
+  .product-info p {
+    color: var(--text-gray); font-size: 14px;
+  }
   .product-meta {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 14px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 18px; padding-top: 15px;
+    border-top: 1px solid var(--border);
   }
-  .price {
-    font-family: var(--font-serif); font-size: 22px; font-weight: 600;
-    color: var(--gold-light);
+  .product-meta .price {
+    color: var(--red); font-weight: 600; font-size: 15px;
   }
-  .price small { font-size: 12px; color: var(--text-muted); font-family: var(--font-sans); }
-  .rating { color: var(--gold); font-size: 13px; letter-spacing: 2px; }
+  .product-meta .rating { color: #f0a500; letter-spacing: 2px; }
 
   /* ============ WHY US ============ */
   .why-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 26px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
   }
   .why-card {
-    padding: 44px 36px; border-radius: 18px;
-    background: linear-gradient(145deg, var(--charcoal-2), var(--charcoal));
+    padding: 35px 30px;
+    background: var(--white);
     border: 1px solid var(--border);
-    position: relative; overflow: hidden;
-    transition: all 0.4s ease;
+    border-radius: 12px;
+    transition: all 0.3s;
   }
-  .why-card::before {
-    content: ''; position: absolute; top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    transform: scaleX(0); transition: transform 0.5s ease;
+  .why-card:hover {
+    border-color: var(--red);
+    box-shadow: 0 8px 25px rgba(217, 4, 41, 0.06);
   }
-  .why-card:hover { transform: translateY(-6px); border-color: rgba(212,175,55,0.5); }
-  .why-card:hover::before { transform: scaleX(1); }
-  .why-icon {
-    width: 68px; height: 68px; border-radius: 16px;
-    background: rgba(212, 175, 55, 0.1);
-    border: 1px solid var(--border);
+  .why-card .icon {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--red-light);
     display: flex; align-items: center; justify-content: center;
-    color: var(--gold); margin-bottom: 26px;
-    transition: all 0.4s;
-  }
-  .why-card:hover .why-icon {
-    background: var(--gold); color: var(--black);
-    transform: rotate(-8deg) scale(1.05);
+    color: var(--red); margin-bottom: 20px;
   }
   .why-card h3 {
-    font-family: var(--font-serif); font-size: 24px; font-weight: 600;
-    margin-bottom: 12px;
+    font-family: var(--font-serif);
+    font-size: 22px; margin-bottom: 10px;
   }
-  .why-card p { color: var(--text-muted); font-size: 14px; line-height: 1.8; }
+  .why-card p { color: var(--text-gray); font-size: 14px; }
 
   /* ============ CTA BANNER ============ */
   .cta-banner {
-    margin: 0 60px; padding: 90px 60px; border-radius: 28px;
+    padding: 80px 60px;
     background:
-      linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.9)),
-      url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop') center/cover;
-    border: 1px solid var(--border);
-    text-align: center; position: relative; overflow: hidden;
+      linear-gradient(rgba(217, 4, 41, 0.92), rgba(163, 2, 30, 0.92)),
+      url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
+    text-align: center; color: var(--white);
   }
-  .cta-banner > * { position: relative; z-index: 2; }
   .cta-banner h2 {
-    font-family: var(--font-serif); font-size: clamp(36px, 5vw, 62px);
-    font-weight: 600; line-height: 1.1; margin-bottom: 20px;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 4vw, 52px);
+    margin-bottom: 15px;
   }
-  .cta-banner h2 .italic { font-style: italic; color: var(--gold); font-weight: 300; }
-  .cta-banner p { color: var(--cream); max-width: 580px; margin: 0 auto 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+  .cta-banner p {
+    opacity: 0.9; max-width: 550px; margin: 0 auto 30px;
+  }
+  .btn-white {
+    padding: 14px 36px; border-radius: 4px;
+    background: var(--white);
+    color: var(--red); font-weight: 700; letter-spacing: 1px;
+    font-size: 12px; text-transform: uppercase; border: none; cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-white:hover { background: var(--off-white); transform: translateY(-2px); }
 
-  /* ============ TESTIMONIALS ============ */
-  .testimonials-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+  /* ============ CONTACT FORM ============ */
+  .contact-section {
+    padding: 100px 60px;
+    background: var(--off-white);
   }
-  .testimonial {
-    padding: 40px 32px; border-radius: 18px;
-    background: var(--charcoal-2);
+  .contact-container {
+    max-width: 800px; margin: 0 auto;
+    background: var(--white);
+    padding: 50px;
+    border-radius: 12px;
     border: 1px solid var(--border);
-    transition: all 0.4s;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
   }
-  .testimonial:hover { border-color: rgba(212,175,55,0.5); transform: translateY(-6px); }
-  .stars { color: var(--gold); letter-spacing: 3px; margin-bottom: 18px; }
-  .testimonial p {
-    font-family: var(--font-serif); font-size: 19px; font-style: italic;
-    line-height: 1.7; color: var(--cream); margin-bottom: 26px;
+  .contact-container h2 {
+    font-family: var(--font-serif);
+    font-size: 38px; text-align: center;
+    margin-bottom: 8px;
   }
-  .author { display: flex; align-items: center; gap: 14px; }
-  .avatar {
-    width: 52px; height: 52px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; color: var(--black); font-family: var(--font-serif);
-    font-size: 20px;
+  .contact-container > p {
+    text-align: center; color: var(--text-gray);
+    margin-bottom: 35px;
   }
-  .author-info h4 { font-size: 15px; font-weight: 600; }
-  .author-info span { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
-
-  /* ============ NEWSLETTER ============ */
-  .newsletter {
-    padding: 80px 60px; text-align: center;
-    border-top: 1px solid var(--border);
-    background: var(--charcoal);
+  .form-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
   }
-  .newsletter h3 {
-    font-family: var(--font-serif); font-size: 42px; font-weight: 600;
-    margin-bottom: 14px;
+  .form-group { display: flex; flex-direction: column; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-gray); margin-bottom: 8px;
   }
-  .newsletter p { color: var(--text-muted); margin-bottom: 36px; }
-  .newsletter-form {
-    display: flex; max-width: 540px; margin: 0 auto;
-    background: var(--charcoal-2); border: 1px solid var(--border);
-    border-radius: 60px; padding: 8px;
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
-  .newsletter-form input {
-    flex: 1; background: transparent; border: none; outline: none;
-    padding: 14px 24px; color: var(--cream); font-size: 15px;
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(217, 4, 41, 0.1);
   }
-  .newsletter-form input::placeholder { color: var(--text-muted); }
+  .form-group textarea {
+    resize: vertical; min-height: 120px;
+  }
+  .form-submit {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+  }
+  .form-submit button {
+    width: 100%; padding: 16px;
+    background: var(--red); color: var(--white);
+    border: none; border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .form-submit button:hover {
+    background: var(--red-dark);
+    box-shadow: 0 8px 20px rgba(217, 4, 41, 0.25);
+  }
 
   /* ============ FOOTER ============ */
   footer {
-    padding: 80px 60px 40px;
-    background: var(--black);
-    border-top: 1px solid var(--border);
+    background: var(--text-dark);
+    color: var(--white);
+    padding: 60px 60px 30px;
   }
   .footer-top {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px;
-    margin-bottom: 60px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px; margin-bottom: 50px;
   }
-  .footer-brand .logo { font-size: 34px; margin-bottom: 20px; display: inline-block; }
-  .footer-brand p { color: var(--text-muted); font-size: 14px; max-width: 340px; line-height: 1.8; }
-  .socials { display: flex; gap: 12px; margin-top: 26px; }
-  .socials a {
-    width: 42px; height: 42px; border-radius: 50%;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.3s; color: var(--cream);
+  .footer-brand .logo { color: var(--white); font-size: 26px; }
+  .footer-brand .logo span { color: var(--red); }
+  .footer-brand p {
+    color: #aaaaaa; font-size: 14px;
+    margin-top: 15px; max-width: 300px; line-height: 1.8;
   }
-  .socials a:hover { background: var(--gold); color: var(--black); border-color: var(--gold); transform: translateY(-3px); }
   .footer-col h4 {
-    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 24px; font-weight: 600;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 20px;
   }
   .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 12px; }
+  .footer-col li { margin-bottom: 10px; }
   .footer-col a {
-    color: var(--text-muted); font-size: 14px;
+    color: #aaaaaa; font-size: 14px;
     transition: color 0.3s;
   }
-  .footer-col a:hover { color: var(--gold); }
+  .footer-col a:hover { color: var(--white); }
   .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 30px; border-top: 1px solid var(--border);
-    color: var(--text-muted); font-size: 13px;
-    flex-wrap: wrap; gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 25px; text-align: center;
+    color: #777777; font-size: 13px;
   }
 
-  /* ============ ANIMATIONS ============ */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* ============ REVEAL ANIMATION ============ */
   .reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* ============ RESPONSIVE ============ */
-  @media (max-width: 1100px) {
-    .categories-grid, .products-grid { grid-template-columns: repeat(2, 1fr); }
-    .why-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-top { grid-template-columns: 1fr 1fr; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .stat:nth-child(2) { border-right: none; }
-  }
-  @media (max-width: 860px) {
-    .navbar { padding: 18px 24px; }
+  @media (max-width: 992px) {
+    .navbar { padding: 16px 24px; }
     .navbar.scrolled { padding: 12px 24px; }
     .nav-links { display: none; }
-    .section { padding: 80px 24px; }
-    .cta-banner { margin: 0 24px; padding: 60px 24px; }
-    .newsletter { padding: 60px 24px; }
-    footer { padding: 60px 24px 30px; }
-    .hero { padding: 120px 24px 60px; }
+    .hero { padding: 100px 24px 60px; }
+    .section { padding: 70px 24px; }
+    .services-grid, .products-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .form-grid { grid-template-columns: 1fr; }
+    .contact-container { padding: 30px 20px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 640px) {
-    .categories-grid, .products-grid, .why-grid, .testimonials-grid, .footer-top {
-      grid-template-columns: 1fr;
-    }
-    .stats { grid-template-columns: 1fr; }
-    .stat { border-right: none; border-bottom: 1px solid var(--border); }
-    .newsletter-form { flex-direction: column; border-radius: 20px; padding: 14px; }
-    .newsletter-form input { padding: 14px; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-    .nav-actions .btn-gold { display: none; }
+  @media (max-width: 600px) {
+    .stats-bar { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    .footer-top { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions button { width: 100%; }
   }
 </style>
 </head>
@@ -500,79 +459,82 @@
 
 <!-- ============ NAVBAR ============ -->
 <nav class="navbar" id="navbar">
-  <a href="#" class="logo">LUXORA<span>GLOBAL TRADE</span></a>
+  <a href="#" class="logo">ATLAS <span>FLOW</span></a>
   <div class="nav-links">
-    <a href="#categories">Logistics</a>
-    <a href="#products">Trade Routes</a>
-    <a href="#why">Why LUXORA</a>
-    <a href="#testimonials">Clients</a>
+    <a href="#services">Services</a>
+    <a href="#products">Products</a>
+    <a href="#why">Why Us</a>
     <a href="#contact">Contact</a>
   </div>
-  <div class="nav-actions">
-    <button class="icon-btn" aria-label="Search">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    </button>
-    <button class="btn-gold">Get a Quote</button>
-  </div>
+  <button class="btn-red" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a Quote</button>
 </nav>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="dot"></span>
-      The World's Most Exclusive Trade Network
-    </div>
-    <h1>Connecting Global<br><span class="italic">Markets</span></h1>
-    <p>Seamless import and export solutions. Premium maritime logistics, trusted by industry leaders across 180 countries and major global ports.</p>
-    <div class="hero-cta">
-      <button class="btn-gold">Explore Services</button>
-      <a href="trade.html" class="btn-outline" style="display:inline-block;">View Trade Portal</a>
+  <div class="hero-content reveal">
+    <span class="hero-tag">Global Import & Export</span>
+    <h1>Connecting Markets,<br>Delivering <span class="red">Excellence</span></h1>
+    <p>Premium maritime logistics and trade solutions across the Middle East and beyond. From port to door, we handle your cargo with precision and care.</p>
+    <div class="hero-actions">
+      <button class="btn-red" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+      <button class="btn-outline-red" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in Touch</button>
     </div>
   </div>
 </section>
 
-<!-- ============ STATS ============ -->
-<section class="stats">
-  <div class="stat reveal"><h3>150+</h3><p>Global Ports</p></div>
-  <div class="stat reveal"><h3>2.5M</h3><p>Containers Handled</p></div>
-  <div class="stat reveal"><h3>99%</h3><p>On-Time Delivery</p></div>
-  <div class="stat reveal"><h3>120+</h3><p>Trade Routes</p></div>
+<!-- ============ STATS BAR ============ -->
+<section class="stats-bar reveal">
+  <div class="stat-item"><h3>150+</h3><p>Global Ports</p></div>
+  <div class="stat-item"><h3>2.5M</h3><p>Containers Moved</p></div>
+  <div class="stat-item"><h3>99%</h3><p>On-Time Delivery</p></div>
+  <div class="stat-item"><h3>24/7</h3><p>Dedicated Support</p></div>
 </section>
 
-<!-- ============ CATEGORIES ============ -->
-<section class="section" id="categories">
+<!-- ============ SERVICES (2x2) ============ -->
+<section class="section" id="services">
   <div class="section-head reveal">
-    <span class="section-tag">Our Network</span>
-    <h2>Global <span class="italic">Logistics</span></h2>
-    <p>From the busiest ports to the most remote destinations, we handle your cargo with unparalleled precision.</p>
+    <span class="tag">What We Do</span>
+    <h2>Comprehensive <span class="red">Logistics</span> Solutions</h2>
+    <p>End-to-end supply chain management tailored to your business needs.</p>
   </div>
-  <div class="categories-grid">
-    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1559297434-fae8a1916a79?q=80&w=800&auto=format&fit=crop')">
-      <div class="arrow">→</div>
-      <div class="content"><span>Ocean Freight</span><h3>Container Ships</h3></div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3>Import Management</h3>
+      <p>Full-service import solutions including supplier sourcing, customs clearance, and door-to-door delivery across the UAE and GCC.</p>
     </div>
-    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1590343027553-1c34212f8d1b?q=80&w=800&auto=format&fit=crop')">
-      <div class="arrow">→</div>
-      <div class="content"><span>Port Operations</span><h3>Terminal Docks</h3></div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <h3>Export Solutions</h3>
+      <p>Expand your reach globally with our expert export documentation, packaging, and freight forwarding services.</p>
     </div>
-    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop')">
-      <div class="arrow">→</div>
-      <div class="content"><span>Infrastructure</span><h3>Container Yards</h3></div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2v20"/></svg>
+      </div>
+      <h3>Ocean Freight</h3>
+      <p>FCL and LCL container shipping with priority booking and real-time satellite tracking across all major trade routes.</p>
     </div>
-    <div class="category-card reveal" style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop')">
-      <div class="arrow">→</div>
-      <div class="content"><span>Heavy Lifting</span><h3>Port Cranes</h3></div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Customs & Compliance</h3>
+      <p>100% compliant customs brokerage ensuring your goods clear borders quickly and without unexpected delays.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ PRODUCTS ============ -->
+<!-- ============ PRODUCTS (2x2) ============ -->
 <section class="section products-section" id="products">
   <div class="section-head reveal">
-    <span class="section-tag">Featured Services</span>
-    <h2>Premium <span class="italic">Trade Routes</span></h2>
-    <p>Specialized freight forwarding and customs clearance for high-value cargo.</p>
+    <span class="tag">Featured Routes</span>
+    <h2>Premium <span class="red">Trade Lanes</span></h2>
+    <p>Specialized freight corridors connecting key global markets.</p>
   </div>
   <div class="products-grid">
     <div class="product-card reveal">
@@ -580,49 +542,49 @@
         <span class="tag">Direct</span>
       </div>
       <div class="product-info">
-        <span class="product-cat">Trans-Pacific</span>
-        <h3>Asia to USA Express</h3>
+        <h3>Asia — Middle East</h3>
+        <p>High-volume container shipping with weekly departures from Shanghai, Ningbo, and Shenzhen.</p>
         <div class="product-meta">
-          <span class="price">Priority <small>Freight</small></span>
+          <span class="price">From $1,200 / TEU</span>
           <span class="rating">★★★★★</span>
         </div>
       </div>
     </div>
     <div class="product-card reveal">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=800&auto=format&fit=crop')">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1590343027553-1c34212f8d1b?q=80&w=800&auto=format&fit=crop')">
         <span class="tag">Popular</span>
       </div>
       <div class="product-info">
-        <span class="product-cat">Europe Network</span>
-        <h3>Rotterdam Hub Gateway</h3>
+        <h3>Europe — UAE</h3>
+        <p>Reliable sea freight from Rotterdam, Hamburg, and Antwerp to Jebel Ali Port with full customs support.</p>
         <div class="product-meta">
-          <span class="price">Custom <small>Clearance</small></span>
+          <span class="price">From $1,800 / TEU</span>
           <span class="rating">★★★★★</span>
         </div>
       </div>
     </div>
     <div class="product-card reveal">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1605745341112-85968b19335b?q=80&w=800&auto=format&fit=crop')">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1559297434-fae8a1916a79?q=80&w=800&auto=format&fit=crop')">
         <span class="tag">Premium</span>
       </div>
       <div class="product-info">
-        <span class="product-cat">Middle East</span>
-        <h3>Jebel Ali Logistics</h3>
+        <h3>USA — GCC</h3>
+        <p>Transatlantic service with priority berthing and expedited clearance for time-sensitive cargo.</p>
         <div class="product-meta">
-          <span class="price">Full <small>Container</small></span>
+          <span class="price">From $2,400 / FEU</span>
           <span class="rating">★★★★★</span>
         </div>
       </div>
     </div>
     <div class="product-card reveal">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop')">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop')">
         <span class="tag">Global</span>
       </div>
       <div class="product-info">
-        <span class="product-cat">Worldwide</span>
         <h3>White-Glove Freight</h3>
+        <p>Bespoke logistics for high-value and sensitive cargo with dedicated account management.</p>
         <div class="product-meta">
-          <span class="price">VIP <small>Handling</small></span>
+          <span class="price">Custom Quote</span>
           <span class="rating">★★★★★</span>
         </div>
       </div>
@@ -633,131 +595,111 @@
 <!-- ============ WHY US ============ -->
 <section class="section" id="why">
   <div class="section-head reveal">
-    <span class="section-tag">The LUXORA Difference</span>
-    <h2>Why the World's <span class="italic">Elite</span> Trade With Us</h2>
+    <span class="tag">The Atlas Flow Advantage</span>
+    <h2>Why the Industry <span class="red">Trusts Us</span></h2>
   </div>
   <div class="why-grid">
     <div class="why-card reveal">
-      <div class="why-icon">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 7h7l-5.7 4.4 2.2 7L12 16l-6 4.4 2.2-7L2.5 9h7z"/></svg>
+      <div class="icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 7h7l-5.7 4.4 2.2 7L12 16l-6 4.4 2.2-7L2.5 9h7z"/></svg>
       </div>
       <h3>Certified Compliance</h3>
-      <p>100% compliant customs clearance and documentation, ensuring your cargo moves seamlessly across borders without delays.</p>
+      <p>Fully licensed and compliant with international trade regulations across all operating jurisdictions.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-icon">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg>
+      <div class="icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg>
       </div>
-      <h3>Global Fleet Access</h3>
-      <p>Access to premium container vessels and priority port berthing. We ensure your goods are always on the fastest route.</p>
+      <h3>Global Network</h3>
+      <p>Established partnerships with major carriers and port authorities worldwide for seamless operations.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-icon">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
       <h3>Insured & Secured</h3>
-      <p>Full-risk insurance and real-time satellite tracking. Your high-value cargo is monitored 24/7 from origin to destination.</p>
+      <p>Comprehensive cargo insurance and 24/7 monitoring ensure complete peace of mind for your shipments.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
+<!-- ============ CTA BANNER ============ -->
 <section class="cta-banner reveal">
-  <h2>Become a Global <span class="italic">Trade Partner</span></h2>
-  <p>Request an invitation to access our private freight network, priority port slots, and dedicated logistics managers.</p>
-  <button class="btn-gold" style="padding:16px 42px;">Request Consultation</button>
+  <h2>Ready to Ship With Confidence?</h2>
+  <p>Get a tailored quote from our logistics experts within 24 hours.</p>
+  <button class="btn-white" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a Quote</button>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
-<section class="section" id="testimonials">
-  <div class="section-head reveal">
-    <span class="section-tag">Client Chronicles</span>
-    <h2>Voices of Our <span class="italic">Partners</span></h2>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial reveal">
-      <div class="stars">★★★★★</div>
-      <p>"LUXORA has transformed our supply chain. Their white-glove handling of our high-value electronics is unmatched."</p>
-      <div class="author">
-        <div class="avatar">A</div>
-        <div class="author-info"><h4>Alexander Voss</h4><span>CEO · Monaco</span></div>
+<!-- ============ CONTACT FORM ============ -->
+<section class="contact-section" id="contact">
+  <div class="contact-container reveal">
+    <h2>Send Us a Message</h2>
+    <p>Fill out the form below and our team will get back to you shortly.</p>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="John Doe" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="john@company.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="+971 50 123 4567" />
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" required>
+            <option value="">Select a topic</option>
+            <option value="import">Import Inquiry</option>
+            <option value="export">Export Inquiry</option>
+            <option value="freight">Freight Quote</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="message">Your Message</label>
+          <textarea id="message" placeholder="Tell us about your shipment requirements..." required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit">Send Message</button>
+        </div>
       </div>
-    </div>
-    <div class="testimonial reveal">
-      <div class="stars">★★★★★</div>
-      <p>"We import luxury goods from Europe to the Middle East. The customs clearance speed and zero damage rate are incredible."</p>
-      <div class="author">
-        <div class="avatar">S</div>
-        <div class="author-info"><h4>Sophia Laurent</h4><span>Importer · Paris</span></div>
-      </div>
-    </div>
-    <div class="testimonial reveal">
-      <div class="stars">★★★★★</div>
-      <p>"When you deal with 20,000 containers a year, you need reliability. LUXORA's port network and tracking system is flawless."</p>
-      <div class="author">
-        <div class="avatar">R</div>
-        <div class="author-info"><h4>Rashid Al-Farsi</h4><span>Logistics Director · Dubai</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ NEWSLETTER ============ -->
-<section class="newsletter">
-  <div class="section-head reveal" style="margin-bottom:0;">
-    <span class="section-tag">Trade Insights</span>
-    <h3>Join Our Network</h3>
-    <p>Get weekly updates on global freight rates, port congestion, and trade opportunities.</p>
-    <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed ✓';">
-      <input type="email" placeholder="your@email.com" required />
-      <button type="submit" class="btn-gold">Subscribe</button>
     </form>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer id="contact">
+<footer>
   <div class="footer-top">
-    <div class="footer-brand reveal">
-      <a href="#" class="logo">LUXORA</a>
-      <p>Global import and export specialists. Delivering your cargo with the elegance, speed, and security it deserves.</p>
-      <div class="socials">
-        <a href="#" aria-label="Instagram">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-        </a>
-        <a href="#" aria-label="Twitter">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1A4 4 0 0012 8.5c0 .3 0 .6.1.9A11.4 11.4 0 013 4.7a4 4 0 001.2 5.4c-.6 0-1.2-.2-1.8-.5v.1a4 4 0 003.2 4c-.5.1-1.1.2-1.7.1a4 4 0 003.7 2.8A8 8 0 012 18.3a11.3 11.3 0 006.1 1.8c7.4 0 11.4-6.1 11.4-11.4v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
-        </a>
-        <a href="#" aria-label="LinkedIn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg>
-        </a>
-      </div>
+    <div class="footer-brand">
+      <a href="#" class="logo">ATLAS <span>FLOW</span></a>
+      <p>Your trusted partner for global import and export solutions. Moving cargo with precision across the Middle East and beyond.</p>
     </div>
-    <div class="footer-col reveal">
+    <div class="footer-col">
       <h4>Services</h4>
       <ul>
         <li><a href="#">Ocean Freight</a></li>
         <li><a href="#">Air Freight</a></li>
         <li><a href="#">Customs Clearance</a></li>
         <li><a href="#">Warehousing</a></li>
-        <li><a href="#">Cargo Insurance</a></li>
       </ul>
     </div>
-    <div class="footer-col reveal">
+    <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="#">About LUXORA</a></li>
+        <li><a href="#">About Us</a></li>
         <li><a href="#">Our Network</a></li>
-        <li><a href="#">Trade Portal</a></li>
         <li><a href="#">Careers</a></li>
-        <li><a href="#">Press</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="footer-col reveal">
+    <div class="footer-col">
       <h4>Support</h4>
       <ul>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Tracking</a></li>
+        <li><a href="#">Track Shipment</a></li>
         <li><a href="#">Documentation</a></li>
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Terms of Service</a></li>
@@ -765,28 +707,42 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 LUXORA Global Trade. All rights reserved.</span>
-    <span>Moving the world's cargo with elegance.</span>
+    <p>© 2025 Atlas Flow General Trading L.L.C. All rights reserved.</p>
   </div>
 </footer>
 
+<!-- ============ JAVASCRIPT ============ -->
 <script>
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
   });
 
   // Scroll reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
         io.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Form submit handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#2a9d8f';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
 </script>
 
 </body>
